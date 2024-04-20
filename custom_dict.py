@@ -134,6 +134,16 @@ class Dictionary:
 
         raise KeyError(key)
 
+    def __contains__(self, key: Any) -> bool:
+        """
+        Checks if a key is in the dictionary.
+        """
+        try:
+            _ = self[key]
+            return True
+        except KeyError:
+            return False
+
     def __len__(self) -> int:
         """
         Returns the number of key-value pairs in the dictionary.

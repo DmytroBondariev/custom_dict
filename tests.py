@@ -74,10 +74,20 @@ def test_load_factor_edge_changes():
 
 
 def test_multiple_kwargs_init():
-
     dictionary = Dictionary(key1="value1", key2="value2", key3="value3", key4="value4", key5="value5",
                             key6="value6", key7="value7", key8="value8", key9="value9", key10="value10")
 
     assert len(dictionary) == 10
     for index in range(10):
-        assert [(f"key{index+1}", f"value{index+1}", hash(f'key{index+1}'))] in dictionary.buckets
+        assert dictionary[f'key{index + 1}'] == f'value{index + 1}'
+        assert [(f"key{index + 1}", f"value{index + 1}", hash(f'key{index + 1}'))] in dictionary.buckets
+
+
+def test_contains_method():
+    dictionary = Dictionary()
+    dictionary["key1"] = "value1"
+    dictionary["key2"] = "value2"
+
+    assert "key1" in dictionary
+    assert "key2" in dictionary
+    assert "key3" not in dictionary
