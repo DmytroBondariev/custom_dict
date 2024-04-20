@@ -144,6 +144,14 @@ class Dictionary:
         except KeyError:
             return False
 
+    def __iter__(self):
+        """
+        Yields each key-value pair in the dictionary.
+        """
+        for bucket in self.buckets:
+            for key, value, _ in bucket:
+                yield key, value
+
     def __len__(self) -> int:
         """
         Returns the number of key-value pairs in the dictionary.

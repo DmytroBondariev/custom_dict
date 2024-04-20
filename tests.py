@@ -91,3 +91,12 @@ def test_contains_method():
     assert "key1" in dictionary
     assert "key2" in dictionary
     assert "key3" not in dictionary
+
+
+def test_iteration():
+    dictionary = Dictionary(key1="value1", key2="value2", key3="value3")
+    expected_items = {"key1": "value1", "key2": "value2", "key3": "value3"}
+
+    for key, value in dictionary:
+        assert key in expected_items
+        assert expected_items[key] == value
